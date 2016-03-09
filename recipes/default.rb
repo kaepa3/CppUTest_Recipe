@@ -12,20 +12,12 @@ bash "apt-get-update-periodic" do
   ignore_failure true
 end
 
-%w(g++ ).each do |pkg|
-  package pkg do
-    action :install
-  end
-end
-
 #CppUTestのコンパイルに必要なモジュールのインストール
-%w(automake autoconf libtool git).each do |package|
+%w(g++ automake autoconf libtool git).each do |package|
   package  "#{package}" do
     action :install
   end
 end
-
-
 
 #CppUTestのリポジトリをcloneする
 git "/home/.CppUTest" do
